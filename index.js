@@ -24,7 +24,7 @@ app.listen(PORT, () => {
 });
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["https://auth-client-nine.vercel.app/signup"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
