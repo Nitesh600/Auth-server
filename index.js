@@ -5,20 +5,23 @@ const app = express();
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
-const { MONGO_URL, PORT } = process.env.MONGO_URL;
 
-mongoose
-  .connect(MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB is  connected successfully"))
-  .catch((err) => console.error(err));
+const PORT =  3001;
+// const dbUrl = process.env.MONGO_URL;
+
+main().then(()=>{
+    console.log("connected to Db");
+ }).catch((err)=>{
+    console.log(err);
+ });
+ async function main() {
+    await mongoose.connect("mongodb+srv://Nitesh:NiteshKumar@zerodhacluster.344ht.mongodb.net/Auth?retryWrites=true&w=majority&appName=ZerodhaCluster");
+  
+}
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
-
 app.use(
   cors({
     origin: ["http://localhost:3000"],
